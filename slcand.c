@@ -177,6 +177,7 @@ static int look_up_uart_speed(long int s)
 int main(int argc, char *argv[])
 {
 	char *tty = NULL;
+    char const *rootprefix = "/";
 	char const *devprefix = "/dev/";
 	char *name = NULL;
 	char buf[IFNAMSIZ+1];
@@ -271,7 +272,7 @@ int main(int argc, char *argv[])
 	name = argv[optind + 1];
 
 	/* Prepare the tty device name string */
-	pch = strstr(tty, devprefix);
+    pch = strstr(tty, rootprefix);
 	if (pch != tty)
 		snprintf(ttypath, TTYPATH_LENGTH, "%s%s", devprefix, tty);
 	else
